@@ -9,6 +9,10 @@ A modern, high-performance news application built with **Next.js 16**, **TypeScr
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue)](https://www.typescriptlang.org/)
 [![TailwindCSS](https://img.shields.io/badge/TailwindCSS-4.0-38bdf8)](https://tailwindcss.com/)
 
+## 🌐 Live Demo
+
+Experience the application live: [**News Portal Live**](https://news-portal-xi-livid.vercel.app/)
+
 ---
 
 ## 🚀 Key Features
@@ -53,7 +57,7 @@ Get the project running locally in minutes:
 
 1.  **Clone the repository:**
     ```bash
-    git clone https://github.com/yourusername/news-portal.git
+    git clone https://github.com/ashuisalluneed/News_Portal
     cd news-portal
     ```
 
