@@ -1,17 +1,20 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Newsreader, Manrope } from "next/font/google";
+
+const newsreader = Newsreader({
+  variable: "--font-heading",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+const manrope = Manrope({
+  variable: "--font-body",
+  subsets: ["latin"],
+  display: "swap",
+});
+
 import SessionProvider from "@/components/SessionProvider";
 import "./globals.css";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
   title: {
@@ -30,7 +33,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${newsreader.variable} ${manrope.variable} antialiased bg-background text-foreground`}
       >
         <SessionProvider>
           {children}

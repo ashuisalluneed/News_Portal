@@ -30,26 +30,26 @@ export default function ArticleCard({ article, priority = false }: ArticleCardPr
   return (
     <Link
       href={`/article/${article.id}`}
-      className="block bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden h-full"
+      className="group block bg-surface rounded-xl hover:bg-surface-high border border-outline/20 hover:border-primary/40 transition-all duration-500 overflow-hidden h-full shadow-[0_8px_30px_rgb(0,0,0,0.4)] hover:shadow-[0_8px_30px_rgba(242,202,80,0.1)] hover:-translate-y-1"
       style={{ minHeight: '44px' }}
     >
       <article className="flex flex-col h-full">
         {/* Image Section - Requirements: 3.1, 3.2, 3.3, 8.3 */}
-        <div className="relative w-full h-48 bg-gray-200">
+        <div className="relative w-full h-48 bg-surface-dim overflow-hidden">
           {article.imageUrl && !imageError ? (
             <Image
               src={article.imageUrl}
               alt={article.title}
               fill
-              className="object-cover"
+              className="object-cover transition-transform duration-700 group-hover:scale-105"
               priority={priority}
               onError={() => setImageError(true)}
               sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
             />
           ) : (
-            <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-gray-300 to-gray-400">
+            <div className="w-full h-full flex items-center justify-center bg-surface-low">
               <svg
-                className="w-16 h-16 text-gray-500"
+                className="w-16 h-16 text-outline"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -66,26 +66,26 @@ export default function ArticleCard({ article, priority = false }: ArticleCardPr
         </div>
 
         {/* Content Section - Requirements: 1.2, 7.2, 8.1 */}
-        <div className="p-4 flex flex-col flex-grow">
+        <div className="p-5 flex flex-col flex-grow">
           {/* Category Badge */}
-          <span className="text-xs font-semibold text-blue-600 uppercase mb-2">
+          <span className="text-xs font-semibold text-primary tracking-widest uppercase mb-3 text-shadow-sm">
             {article.category}
           </span>
 
           {/* Title - Requirements: 8.1 (text truncation) */}
-          <h2 className="text-xl font-bold text-gray-900 mb-2 line-clamp-2 hover:text-blue-600 transition-colors">
+          <h2 className="text-xl font-bold text-foreground mb-3 line-clamp-2 group-hover:text-primary transition-colors duration-300" style={{ fontFamily: 'var(--font-heading), serif' }}>
             {article.title}
           </h2>
 
           {/* Summary */}
-          <p className="text-gray-600 text-sm mb-3 line-clamp-3 flex-grow">
+          <p className="text-foreground-muted text-sm mb-4 line-clamp-3 flex-grow leading-relaxed">
             {article.summary}
           </p>
 
           {/* Metadata */}
-          <div className="flex items-center justify-between text-xs text-gray-500 mt-auto">
-            <span className="font-medium">{article.author}</span>
-            <time dateTime={article.publishedAt}>{formatDate(article.publishedAt)}</time>
+          <div className="flex items-center justify-between text-xs text-foreground-muted/70 mt-auto pt-4 border-t border-outline/20">
+            <span className="font-medium tracking-wide">{article.author}</span>
+            <time dateTime={article.publishedAt} className="tracking-wide">{formatDate(article.publishedAt)}</time>
           </div>
         </div>
       </article>

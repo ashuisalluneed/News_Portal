@@ -11,6 +11,7 @@ export interface User {
     email: string;
     password: string; // Hashed password
     image?: string;
+    role?: 'USER' | 'ADMIN';
     createdAt: Date;
 }
 
@@ -22,6 +23,7 @@ const users: User[] = [
         id: '1',
         name: 'Demo User',
         email: 'demo@example.com',
+        role: 'ADMIN',
         password: '$2a$10$EpWaTgiFB8j5Wj.5eE6x..b.5.5.5.5.5.5.5.5.5.5.5.5.5.5.5', // Placeholder, will be reset on save
         image: undefined,
         createdAt: new Date('2024-01-01'),
@@ -63,6 +65,7 @@ export async function createUser(userData: Omit<User, 'id' | 'createdAt'>): Prom
         ...userData,
         password: hashedPassword,
         id: String(users.length + 1),
+        role: userData.role || 'USER',
         createdAt: new Date(),
     };
 

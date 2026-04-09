@@ -25,9 +25,9 @@ export default function Hero({ featuredArticles }: HeroProps) {
   }
 
   return (
-    <section className="bg-gradient-to-b from-gray-50 to-white py-8 px-4">
+    <section className="bg-background-dark py-12 px-4 border-b border-outline/10">
       <div className="max-w-7xl mx-auto">
-        <h2 className="text-3xl font-bold text-gray-900 mb-6">Featured Stories</h2>
+        <h2 className="text-3xl font-black text-foreground mb-8 tracking-tight uppercase" style={{ fontFamily: 'var(--font-heading), serif' }}>Featured Stories</h2>
         
         <div className={`grid gap-6 ${
           articles.length === 1 
@@ -72,25 +72,25 @@ function FeaturedArticleCard({ article, priority = false }: FeaturedArticleCardP
   return (
     <Link
       href={`/article/${article.id}`}
-      className="block bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden transform hover:-translate-y-1"
+      className="group block bg-surface rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.6)] hover:shadow-[0_8px_40px_rgba(242,202,80,0.15)] transition-all duration-500 overflow-hidden hover:-translate-y-2 border border-outline/30 hover:border-primary/50"
     >
       <article className="flex flex-col h-full">
         {/* Larger Image Section for Featured Articles */}
-        <div className="relative w-full h-64 md:h-80 bg-gray-200">
+        <div className="relative w-full h-64 md:h-80 bg-surface-dim overflow-hidden">
           {article.imageUrl && !imageError ? (
             <Image
               src={article.imageUrl}
               alt={article.title}
               fill
-              className="object-cover"
+              className="object-cover transition-transform duration-700 group-hover:scale-105"
               priority={priority}
               onError={() => setImageError(true)}
               sizes="(max-width: 1024px) 100vw, 33vw"
             />
           ) : (
-            <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-blue-400 to-purple-500">
+            <div className="w-full h-full flex items-center justify-center bg-surface-low">
               <svg
-                className="w-20 h-20 text-white opacity-75"
+                className="w-20 h-20 text-outline opacity-75"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -106,32 +106,32 @@ function FeaturedArticleCard({ article, priority = false }: FeaturedArticleCardP
           )}
           
           {/* Featured Badge */}
-          <div className="absolute top-4 left-4 bg-red-600 text-white px-3 py-1 rounded-full text-xs font-bold uppercase">
+          <div className="absolute top-4 left-4 bg-primary text-background-dark px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-widest shadow-[0_2px_10px_rgba(242,202,80,0.5)]">
             Featured
           </div>
         </div>
 
         {/* Content Section with Enhanced Styling */}
-        <div className="p-6 flex flex-col flex-grow">
+        <div className="p-6 md:p-8 flex flex-col flex-grow">
           {/* Category Badge */}
-          <span className="text-sm font-bold text-blue-600 uppercase mb-3 tracking-wide">
+          <span className="text-xs font-bold text-primary uppercase mb-4 tracking-widest text-shadow-sm">
             {article.category}
           </span>
 
           {/* Title - Larger for featured articles */}
-          <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3 line-clamp-2 hover:text-blue-600 transition-colors">
+          <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-4 line-clamp-2 group-hover:text-primary transition-colors duration-300" style={{ fontFamily: 'var(--font-heading), serif' }}>
             {article.title}
           </h3>
 
           {/* Summary - More lines visible */}
-          <p className="text-gray-700 text-base mb-4 line-clamp-4 flex-grow leading-relaxed">
+          <p className="text-foreground-muted text-base md:text-lg mb-6 line-clamp-3 md:line-clamp-4 flex-grow leading-relaxed">
             {article.summary}
           </p>
 
           {/* Metadata with enhanced styling */}
-          <div className="flex items-center justify-between text-sm text-gray-600 mt-auto pt-4 border-t border-gray-200">
-            <span className="font-semibold">{article.author}</span>
-            <time dateTime={article.publishedAt} className="text-gray-500">
+          <div className="flex items-center justify-between text-sm text-foreground-muted/70 mt-auto pt-5 border-t border-outline/20">
+            <span className="font-semibold tracking-wide">{article.author}</span>
+            <time dateTime={article.publishedAt} className="tracking-wide">
               {formatDate(article.publishedAt)}
             </time>
           </div>

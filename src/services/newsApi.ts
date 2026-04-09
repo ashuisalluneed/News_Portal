@@ -53,7 +53,7 @@ const transformGNewsArticle = (item: any): Article => {
   };
 };
 
-export async function fetchArticles(limit: number = 10, category?: string, country: string = 'in'): Promise<Article[]> {
+export async function fetchArticles(limit: number = 10, category?: string, country: string = 'us'): Promise<Article[]> {
   // 1. Try GNews first (Works on Vercel Free)
   if (GNEWS_API_KEY) {
     try {
@@ -66,7 +66,11 @@ export async function fetchArticles(limit: number = 10, category?: string, count
         const data = await res.json();
         if (data.articles && data.articles.length > 0) {
           return data.articles.map(transformGNewsArticle);
+        } else {
+          console.log(`GNews returned 0 articles. Falling back to next source.`);
         }
+      } else {
+        console.warn(`GNews response not OK: ${res.status} ${res.statusText}`);
       }
     } catch (e) {
       console.warn('GNews fetch failed:', e);
@@ -87,7 +91,11 @@ export async function fetchArticles(limit: number = 10, category?: string, count
           return data.articles
             .filter((item: any) => item.title !== '[Removed]')
             .map(transformNewsAPIArticle);
+        } else {
+          console.warn(`NewsAPI returned 0 articles for country=${country}.`);
         }
+      } else {
+        console.warn(`NewsAPI response not OK: ${res.status} ${res.statusText}`);
       }
     } catch (e) {
       console.warn('NewsAPI fetch failed:', e);
@@ -95,7 +103,7 @@ export async function fetchArticles(limit: number = 10, category?: string, count
   }
 
   // 3. Fallback to Mock Data
-  console.log('Using mock data fallback');
+  console.log('Using mock data fallback because both APIs failed or returned no results');
   return mockArticles.slice(0, limit);
 }
 

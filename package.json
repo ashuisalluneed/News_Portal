@@ -15,7 +15,7 @@
   "dependencies": {
     "@types/bcryptjs": "^2.4.6",
     "bcryptjs": "^3.0.3",
-    "next": "16.0.10",
+    "next": "^16.2.1",
     "next-auth": "^5.0.0-beta.30",
     "react": "19.2.0",
     "react-dom": "19.2.0"
@@ -30,8 +30,8 @@
     "@types/react-dom": "^19",
     "@vitejs/plugin-react": "^5.1.1",
     "babel-plugin-react-compiler": "1.0.0",
-    "eslint": "^9",
-    "eslint-config-next": "16.0.5",
+    "eslint": "^9.0.0",
+    "eslint-config-next": "latest",
     "eslint-config-prettier": "^10.1.8",
     "fast-check": "^4.3.0",
     "jsdom": "^27.2.0",
@@ -39,5 +39,9 @@
     "tailwindcss": "^4",
     "typescript": "^5",
     "vitest": "^4.0.14"
+  },
+  "overrides": {
+    "brace-expansion": "^2.0.1",
+    "minimatch": "^5.1.0"
   }
 }
